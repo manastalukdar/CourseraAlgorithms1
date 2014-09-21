@@ -3,9 +3,27 @@
  *
  * @author Manas Talukdar
  */
-public class QuickFindUF {
+public class QuickFind {
     /** The id. */
-    public final int[] id;
+    private int[] id;
+
+    /**
+     * Gets the id.
+     *
+     * @return the id
+     */
+    public final int[] getId() {
+        return id;
+    }
+
+    /**
+     * Sets the id.
+     *
+     * @param value the new id
+     */
+    public final void setId(final int[] value) {
+        id = value;
+    }
 
     /**
      * Instantiates a new quick find uf.
@@ -13,7 +31,7 @@ public class QuickFindUF {
      * @param n
      *            the n
      */
-    public QuickFindUF(final int n) {
+    public QuickFind(final int n) {
         id = new int[n];
         for (int i = 0; i < n; i++) {
             id[i] = i;
