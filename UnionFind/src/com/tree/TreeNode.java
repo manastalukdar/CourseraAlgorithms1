@@ -13,10 +13,10 @@ public class TreeNode<T> implements Iterable<TreeNode<T>> {
 
         /** The data. */
         public T data;
-        
+
         /** The parent. */
         public TreeNode<T> parent;
-        
+
         /** The children. */
         public List<TreeNode<T>> children;
 
@@ -25,7 +25,7 @@ public class TreeNode<T> implements Iterable<TreeNode<T>> {
          *
          * @return true, if is root
          */
-        public boolean isRoot() {
+        public final boolean isRoot() {
                 return parent == null;
         }
 
@@ -34,7 +34,7 @@ public class TreeNode<T> implements Iterable<TreeNode<T>> {
          *
          * @return true, if is leaf
          */
-        public boolean isLeaf() {
+        public final boolean isLeaf() {
                 return children.size() == 0;
         }
 
@@ -46,7 +46,7 @@ public class TreeNode<T> implements Iterable<TreeNode<T>> {
          *
          * @param data the data
          */
-        public TreeNode(T data) {
+        public TreeNode(final T data) {
                 this.data = data;
                 this.children = new LinkedList<TreeNode<T>>();
                 this.elementsIndex = new LinkedList<TreeNode<T>>();
@@ -59,7 +59,7 @@ public class TreeNode<T> implements Iterable<TreeNode<T>> {
          * @param child the child
          * @return the tree node
          */
-        public TreeNode<T> addChild(T child) {
+        public final TreeNode<T> addChild(final T child) {
                 TreeNode<T> childNode = new TreeNode<T>(child);
                 childNode.parent = this;
                 this.children.add(childNode);
@@ -72,11 +72,12 @@ public class TreeNode<T> implements Iterable<TreeNode<T>> {
          *
          * @return the level
          */
-        public int getLevel() {
-                if (this.isRoot())
-                        return 0;
-                else
-                        return parent.getLevel() + 1;
+        public final int getLevel() {
+                if (this.isRoot()) {
+                    return 0;
+                } else {
+                    return parent.getLevel() + 1;
+                }
         }
 
         /**
@@ -84,10 +85,11 @@ public class TreeNode<T> implements Iterable<TreeNode<T>> {
          *
          * @param node the node
          */
-        private void registerChildForSearch(TreeNode<T> node) {
+        private void registerChildForSearch(final TreeNode<T> node) {
                 elementsIndex.add(node);
-                if (parent != null)
-                        parent.registerChildForSearch(node);
+                if (parent != null) {
+                    parent.registerChildForSearch(node);
+                }
         }
 
         /**
@@ -96,11 +98,12 @@ public class TreeNode<T> implements Iterable<TreeNode<T>> {
          * @param cmp the cmp
          * @return the tree node
          */
-        public TreeNode<T> findTreeNode(Comparable<T> cmp) {
+        public final TreeNode<T> findTreeNode(final Comparable<T> cmp) {
                 for (TreeNode<T> element : this.elementsIndex) {
                         T elData = element.data;
-                        if (cmp.compareTo(elData) == 0)
-                                return element;
+                        if (cmp.compareTo(elData) == 0) {
+                            return element;
+                        }
                 }
 
                 return null;
@@ -110,7 +113,7 @@ public class TreeNode<T> implements Iterable<TreeNode<T>> {
          * @see java.lang.Object#toString()
          */
         @Override
-        public String toString() {
+        public final String toString() {
                 return data != null ? data.toString() : "[data null]";
         }
 
@@ -118,7 +121,7 @@ public class TreeNode<T> implements Iterable<TreeNode<T>> {
          * @see java.lang.Iterable#iterator()
          */
         @Override
-        public Iterator<TreeNode<T>> iterator() {
+        public final Iterator<TreeNode<T>> iterator() {
                 TreeNodeIter<T> iter = new TreeNodeIter<T>(this);
                 return iter;
         }

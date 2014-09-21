@@ -13,9 +13,9 @@ public class TreeNodeIter<T> implements Iterator<TreeNode<T>> {
          * The Enum ProcessStages.
          */
         enum ProcessStages {
-                
+
                 /** The Process parent. */
-                ProcessParent, 
+                ProcessParent,
  /** The Process child cur node. */
  ProcessChildCurNode, 
  /** The Process child sub node. */
@@ -38,13 +38,13 @@ public class TreeNodeIter<T> implements Iterator<TreeNode<T>> {
 
         /** The do next. */
         private ProcessStages doNext;
-        
+
         /** The next. */
         private TreeNode<T> next;
-        
+
         /** The children cur node iter. */
         private Iterator<TreeNode<T>> childrenCurNodeIter;
-        
+
         /** The children sub node iter. */
         private Iterator<TreeNode<T>> childrenSubNodeIter;
 
@@ -73,7 +73,7 @@ public class TreeNodeIter<T> implements Iterator<TreeNode<T>> {
                                 return false;
                         }
                 }
-                
+
                 if (this.doNext == ProcessStages.ProcessChildSubNode) {
                         if (childrenSubNodeIter.hasNext()) {
                                 this.next = childrenSubNodeIter.next();
