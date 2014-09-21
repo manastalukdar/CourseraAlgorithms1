@@ -18,17 +18,16 @@ final class Application {
      */
     public static void main(final String[] args) {
         final int arrayLength = 10;
-        final int number3 = 3;
         QuickFindUF qf = new QuickFindUF(arrayLength);
-        qf.union(number3, 1);
-        //CHECKSTYLE:OFF
-        qf.union(1, 6);
-        qf.union(2, 3);
-        qf.union(7, 0);
-        qf.union(6, 9);
-        qf.union(5, 2);
-        //CHECKSTYLE:ON
-        System.out.println(Arrays.toString(qf.id));
+        String input = "5-1 1-6 0-9 6-9 3-7 4-3";
+        String[] pairs = input.split(" ");
+        for(String pair: pairs){
+            //pair.replace("-", ",");
+            int p = Integer.parseInt(pair.split("-")[0]);
+            int q = Integer.parseInt(pair.split("-")[1]);
+            qf.union(p, q);
+        }
+        System.out.println(Arrays.toString(qf.id).replace(',', ' '));
     }
 
 }
